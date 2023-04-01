@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" href='{% static "App_Folder_css/hedder.css"%}'/>
+</head>
+
+<body>
+<!-- header -->
+<header>
+    <h1 class="headline">
+        <a>ラボログ</a>
+    </h1>
+    <div>
+        {% if user.is_authenticated %}
+        <ul class="nav-list">
+            <li class="nav-list-item">
+                <h1>{{UserID}}さん</h1>
+            </li>
+        <li class="nav-list-item">
+            <a href="{% url 'Logout' %}">ログアウト</a>
+        </li>
+        </ul>
+        {% else %}
+        <ul class="nav-list">
+        <li class="nav-list-item">
+            <a href="{% url 'Login' %}">ログイン</a>
+        </li>
+        <li class="nav-list-item">
+            <a href="{% url 'register' %}">新規登録</a>
+        </li>
+        </ul>
+        {% endif %}
+    </div>
+  </header>
+
+  <h1>ここにコンテンツを載せよう！</h1>
+</body>
+</html>
