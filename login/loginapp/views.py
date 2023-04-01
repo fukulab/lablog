@@ -1,15 +1,18 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView #テンプレートタグ
+from django.views.generic import View, TemplateView #テンプレートタグ
 from .forms import AccountForm, AddAccountForm #ユーザーアカウントフォーム
-from django.views.generic import TemplateView
-
+from django.shortcuts import redirect
+import os
 # ログイン・ログアウト処理に利用
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from .name_list import NAME_LIST
 
 #ログイン
+#ログインの返答もこの関数を呼ぶ。
+
 def Login(request):
     # POST
     if request.method == 'POST':
@@ -40,15 +43,15 @@ def Login(request):
 
 
 #ログアウト
-# @login_required
+@login_required
 def Logout(request):
     logout(request)
     # ログイン画面遷移
-    return HttpResponseRedirect(reverse('home'))
+    return HttpResponseRedirect(reverse('Login'))
 
 
 #ホーム
-# @login_required
+@login_required
 def home(request):
     params = {"UserID":request.user,}
     return render(request, "App_Folder_HTML/home.html",context=params)
@@ -106,3 +109,28 @@ class  AccountRegistration(TemplateView):
             print(self.params["account_form"].errors)
 
         return render(request,"App_Folder_HTML/register.html",context=self.params)
+    
+class Pulldown(View):
+    def get(self, request):
+         return render(request,"App_Folder_HTML/department_and_faculty.html")
+
+    def post(self, request, *args, **kwargs):
+        pass
+
+def pulldown1(request):
+
+    if request.method == 'POST':
+        faculty_name = request.POST.get('学部')
+        department_name = request.POST.get('学科')
+        name = f'{faculty_name}_{department_name}'
+
+        if name in NAME_LIST:
+            
+            name = os.path.join("faculty_and_department",f"{name}")
+            return redirect(name)
+        
+    return render(request,"App_Folder_HTML/department_and_faculty.html")
+
+def enginiering_detail(request,name):
+    
+    return render(request,f"faculty_and_department/{name}.html")

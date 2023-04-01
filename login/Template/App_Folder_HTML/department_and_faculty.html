@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja" dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <title>学科と学部を選択する画面</title>
+        <link rel="stylesheet" href='{% static "App_Folder_css/department_and_faculty.css" %}'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    </head>
+<body>
+   
+    <form action="" method="post" class= "select_all">
+        <span class="select_label">学部を選択してください</span>
+        <span class="select_box">
+            <select name="学部" id="学部">
+            <option value="">選択してください</option>
+            <option value="工学部">工学部</option>
+            <option value="理学部">理学部</option>
+            <option value="農学部">農学部</option>
+            <option value="法学部">法学部</option>
+            </select>
+        </span>
+        <span class="select_label">学科を選択してください</span>
+        <span class="select_box">
+            <select name="学科" id="学科">
+            <option value="">選択してください</option>
+            <option value="建築学科" data-val="工学部">建築学科</option>
+            <option value="市民工学" data-val="工学部">市民工学</option>
+            <option value="電気電子工学科" data-val="工学部">電気電子工学科</option>
+            <option value="情報知能" data-val="工学部">情報知能</option>
+            <option value="生命" data-val="農学部">生命学科</option>
+            </select>
+            
+        </span>
+
+        <span class="select_boxbottun"><input type="submit" value="送信する"></span>
+        {% csrf_token %}
+
+</form>
+
+   <script>
+        var $dep = $('select[id="学科"]');
+        $('select[id="学部"]').change(function() {
+            var val1 = $(this).val();  //学部のvalueの値が返る
+            $dep.find('option').each(function() { //
+            var val2 = $(this).data('val');
+            if (val1 === val2) {
+                $(this).show();
+            }else {
+                $(this).hide();
+            }
+            })
+        })
+    </script>
+</body>
+
