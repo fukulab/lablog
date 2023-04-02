@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .name_list import NAME_LIST
-
+from .models import TemplateSelect
 #ログイン
 #ログインの返答もこの関数を呼ぶ。
 
@@ -48,13 +48,6 @@ def Logout(request):
     logout(request)
     # ログイン画面遷移
     return HttpResponseRedirect(reverse('Login'))
-
-
-#ホーム
-@login_required
-def home(request):
-    params = {"UserID":request.user,}
-    return render(request, "App_Folder_HTML/home.html",context=params)
 
 
 #新規登録
@@ -117,20 +110,32 @@ class Pulldown(View):
     def post(self, request, *args, **kwargs):
         pass
 
-def pulldown1(request):
-
+#ホーム
+@login_required
+def home(request):
+    params = {"UserID":request.user,}
     if request.method == 'POST':
         faculty_name = request.POST.get('学部')
         department_name = request.POST.get('学科')
-        name = f'{faculty_name}_{department_name}'
+        name = f"{faculty_name}_{department_name}"
 
-        if name in NAME_LIST:
-            
-            name = os.path.join("faculty_and_department",f"{name}")
-            return redirect(name)
+        if name in NAME_LIST:     
+        #,faculty=faculty_name,department=department_name  
+            return redirect(detail,faculty=faculty_name,department=department_name)
         
-    return render(request,"App_Folder_HTML/department_and_faculty.html")
 
-def enginiering_detail(request,name):
+        
+    return render(request, "App_Folder_HTML/home.html",context=params)
+
+
+def detail(request,faculty,department):
+
     
-    return render(request,f"faculty_and_department/{name}.html")
+    faculty_and_department = TemplateSelect.objects.filter(faculty=faculty,department=department).first()
+    labo_name_list= faculty_and_department.room.split(',')
+    print(labo_name_list)
+
+    params = {'name':faculty_and_department,'labo_name':labo_name_list}
+
+   
+    return render(request,f"faculty_and_department/base1.html",context=params)

@@ -1,0 +1,48 @@
+* {
+    margin:0; padding:0;
+  }
+  header {
+    height: 100px;
+    width: 100%;
+    padding: 15px 0;
+    background-color: #98c1c7;
+    color: white;
+  }
+  header .headline{
+      line-height: 100px;
+      float: left;
+      font-size: 30px;
+      margin-left: 100px;
+  }
+  .nav-list {
+      line-height: 100px;
+      float: right;
+      margin-left: auto;
+      margin-right: 0;
+      list-style: none;
+      position: absolute;
+    right: 0;
+  }
+  .nav-list-item {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+  }
+
+  body{background-color: #faf0e6;
+  }
+  .select_label {
+      display:block;
+    }
+  .select_boxbottun{
+      display:block;
+    }
+  
+  .select_all{
+      vertical-align:  middle;
+  
+      text-align:  center;  
+       /*コレ*/width: fit-content;
+      /*コレ*/  margin: 0 auto;
+  
+  }

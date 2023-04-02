@@ -15,3 +15,15 @@ class Account(models.Model):
 
     def __str__(self): #管理画面で見るときに役に立つ。
         return self.user.username
+
+class TemplateSelect(models.Model):
+
+    faculty = models.CharField(max_length=100)
+    department = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="profile_pics",blank=True)
+    room = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f'{self.faculty}_{self.department}'
+
+
