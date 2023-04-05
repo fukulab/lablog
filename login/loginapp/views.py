@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView #テンプレートタグ
+from django.views.generic import TemplateView,View #テンプレートタグ
 from .forms import AccountForm, AddAccountForm,ReviewForm #ユーザーアカウントフォーム
 from django.views.generic import TemplateView
 from .models import Review
@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+
 
 from django.db.models import Avg
 from .name_list import NAME_LIST
