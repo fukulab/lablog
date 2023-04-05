@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Account
-#ModelFromは簡単に作れる。また、簡単にデータベースに入力できる。
+from .models import Account,Review
+
 # フォームクラス作成
 #書き換える場合フィールド書けばいい。
 class AccountForm(forms.ModelForm):
@@ -20,8 +20,17 @@ class AddAccountForm(forms.ModelForm):
     class Meta():
         # モデルクラスを指定
         model = Account
-        fields = ('last_name','first_name','account_image',)
-        labels = {'last_name':"苗字",'first_name':"名前",'account_image':"写真アップロード",}
+        #fields = ('last_name','first_name','account_image',)
+        fields = ('account_image',)
+        labels = {'account_image':"写真アップロード",}
+
+
+class ReviewForm(forms.ModelForm):   
+    class Meta:
+        model = Review
+        fields = ['score1','score2','score3','score4', 'comment']
+        # フィールド名指定
+        labels = {'score1':'担当教授の干渉度','score2':'先輩・後輩との関わり','score3':'研究室の設備','score4':'学会のレベル', 'comment':'コメント'}
 
 class Select_d_f(forms.Form):
     choice_de = (
