@@ -121,15 +121,12 @@ def home(request):
 
         if name in NAME_LIST:     
         #,faculty=faculty_name,department=department_name  
-            return redirect(detail,faculty=faculty_name,department=department_name)
-        
-
+            return redirect(facaluty_department,faculty=faculty_name,department=department_name)
         
     return render(request, "App_Folder_HTML/home.html",context=params)
 
 
-def detail(request,faculty,department):
-
+def facaluty_department(request,faculty,department):
     
     faculty_and_department = TemplateSelect.objects.filter(faculty=faculty,department=department).first()
     labo_name_list= faculty_and_department.room.split(',')
@@ -137,5 +134,7 @@ def detail(request,faculty,department):
 
     params = {'name':faculty_and_department,'labo_name':labo_name_list}
 
-   
     return render(request,f"faculty_and_department/base1.html",context=params)
+
+def detail(request):
+    return render(request,"faculty_and_department/detail.html")
