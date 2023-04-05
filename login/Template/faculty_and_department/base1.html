@@ -10,7 +10,7 @@
 <body>
     <h1>{{ name }}</h1>
     {% for value in labo_name %}
-        <p>{{ value }}</p>
+        <p><a href="{% url 'detail' %}">{{ value }}</p></a>
     {% endfor %}
 
 

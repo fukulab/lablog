@@ -8,7 +8,7 @@ TemplateSelect.objects.create(
     faculty = "工学部",
     department = "電気電子工学科",
     image = "",
-    room = "集積回路情報,計算機工学,知的学習論,	情報通信,アルゴリズム"
+    room1 = "集積回路情報,計算機工学,知的学習論,	情報通信,アルゴリズム"
 )
 TemplateSelect.objects.create(
     faculty = "工学部",
