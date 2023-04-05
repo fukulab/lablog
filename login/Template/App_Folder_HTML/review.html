@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja" dir="ltr">
+
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" href='{% static "App_Folder_css/style.css" %}'/>
+</head>
+
+<body>
+<h1>研究室の評価</h1>
+{% if LabCreate %}
+   <h1>登録完了!</h1>
+   <p class="message">こちらから
+    <a href="{% url 'home' %}">ホームに</a>
+    </p>
+ {% else %}
+   <div class="reg">
+   <table class="reg_form">
+   <div class="reg">
+   <table class="reg_form">
+
+   <form enctype="multipart/form-data" method="post">
+   {% csrf_token %}
+   {{ lab_form.as_table }}
+   <tr><td></td><td>
+   <input class="btn" type="submit" name="" value="登録">
+   </td></tr>
+   </form>
+   </table>
+   </div>
+{% endif %}
+
+</body>
+</html>

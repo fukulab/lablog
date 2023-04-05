@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Account
+from .models import Account,Review
 
 # フォームクラス作成
 class AccountForm(forms.ModelForm):
@@ -22,3 +22,11 @@ class AddAccountForm(forms.ModelForm):
         #fields = ('last_name','first_name','account_image',)
         fields = ('account_image',)
         labels = {'account_image':"写真アップロード",}
+
+
+class ReviewForm(forms.ModelForm):   
+    class Meta:
+        model = Review
+        fields = ['score1','score2','score3','score4', 'comment']
+        # フィールド名指定
+        labels = {'score1':'担当教授の干渉度','score2':'先輩・後輩との関わり','score3':'研究室の設備','score4':'学会のレベル', 'comment':'コメント'}

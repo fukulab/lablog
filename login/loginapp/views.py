@@ -1,13 +1,16 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView #テンプレートタグ
-from .forms import AccountForm, AddAccountForm #ユーザーアカウントフォーム
+from .forms import AccountForm, AddAccountForm,ReviewForm #ユーザーアカウントフォーム
 from django.views.generic import TemplateView
+from .models import Review
 
 # ログイン・ログアウト処理に利用
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.db.models import Avg
+
 
 #ログイン
 def Login(request):
@@ -106,3 +109,43 @@ class  AccountRegistration(TemplateView):
             print(self.params["account_form"].errors)
 
         return render(request,"App_Folder_HTML/register.html",context=self.params)
+    
+
+#研究室の評価
+class  ReviewLabolatory(TemplateView):
+
+    def __init__(self):
+        self.params = {
+        "LabCreate":False,
+        "lab_form": Review()
+        }
+
+    #Get処理
+    def get(self,request):
+        self.params["lab_form"] = ReviewForm()
+        self.params["LabCreate"] = False
+        return render(request,"App_Folder_HTML/review.html",context=self.params)
+
+    #Post処理
+    def post(self,request):
+        self.params["lab_form"] = ReviewForm(data=request.POST)
+
+        #フォーム入力の有効検証
+        if self.params["lab_form"].is_valid():
+            # アカウント情報をDB保存
+            lab = self.params["lab_form"].save()
+            # # パスワードをハッシュ化
+            # lab.set_password(lab.password)
+            # # ハッシュ化パスワード更新
+            # lab.save()
+
+            # アカウント作成情報更新
+            self.params["LabCreate"] = True
+
+        else:
+            # フォームが有効でない場合
+            print(self.params["lab_form"].errors)
+
+        return render(request,"App_Folder_HTML/review.html",context=self.params)
+    
+
