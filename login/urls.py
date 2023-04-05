@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 
 urlpatterns = [
-    path('admin/', admin.site.urls), #管理画面はもともとurlの遷移先で作成されている。
+    path('admin/', admin.site.urls),
     path('', include('loginapp.urls')),
 
 ]

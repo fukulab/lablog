@@ -12,16 +12,18 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Tepmpateフォルダへの絶対パスを定義
-TEMPLATE_DIR = os.path.join(BASE_DIR,'Template')
+TEMPLATE_DIR = BASE_DIR / "Template"
+
 # staticフォルダへの絶対パスを定義
-STATIC_DIR = os.path.join(BASE_DIR,'static')
-STATICFILES_DIRS = [STATIC_DIR,]
+STATIC_DIR = BASE_DIR / "static"
+
 # メディアフォルダへの絶対パスを定義
-MEDIA_DIR = os.path.join(BASE_DIR,'media')
+MEDIA_DIR = BASE_DIR / "media"
 
 
 # Quick-start development settings - unsuitable for production
@@ -87,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'myapp',
         'USER': 'haru',
-        'PASSWORD': '12345',
+        'PASSWORD': '123lab45.log',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -125,9 +127,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'ja'
+LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Tokyo'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -137,8 +139,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -146,9 +146,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Static files
+# STATIC_URL = '/static/'
+# # STATICFILES_DIRS = [STATIC_DIR,]
+# STATICFILES_DIRS = [ BASE_DIR / 'static']
+
 STATIC_URL = '/static/'
-
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
 #MEDIA_DIR
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = "/media/"

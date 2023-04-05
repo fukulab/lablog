@@ -3,16 +3,20 @@ from django.views.generic import TemplateView #テンプレートタグ
 from .forms import AccountForm, AddAccountForm,ReviewForm #ユーザーアカウントフォーム
 from django.views.generic import TemplateView
 from .models import Review
-
+from django.shortcuts import redirect
+import os
 # ログイン・ログアウト処理に利用
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+
 from django.db.models import Avg
-
-
+from .name_list import NAME_LIST
+from .models import TemplateSelect
 #ログイン
+#ログインの返答もこの関数を呼ぶ。
+
 def Login(request):
     # POST
     if request.method == 'POST':
@@ -43,18 +47,11 @@ def Login(request):
 
 
 #ログアウト
-# @login_required
+@login_required
 def Logout(request):
     logout(request)
     # ログイン画面遷移
-    return HttpResponseRedirect(reverse('home'))
-
-
-#ホーム
-# @login_required
-def home(request):
-    params = {"UserID":request.user,}
-    return render(request, "App_Folder_HTML/home.html",context=params)
+    return HttpResponseRedirect(reverse('Login'))
 
 
 #新規登録
@@ -149,3 +146,39 @@ class  ReviewLabolatory(TemplateView):
         return render(request,"App_Folder_HTML/review.html",context=self.params)
     
 
+class Pulldown(View):
+    def get(self, request):
+         return render(request,"App_Folder_HTML/department_and_faculty.html")
+
+    def post(self, request, *args, **kwargs):
+        pass
+
+#ホーム
+@login_required
+def home(request):
+    params = {"UserID":request.user,}
+    if request.method == 'POST':
+        faculty_name = request.POST.get('学部')
+        department_name = request.POST.get('学科')
+        name = f"{faculty_name}_{department_name}"
+
+        if name in NAME_LIST:     
+        #,faculty=faculty_name,department=department_name  
+            return redirect(detail,faculty=faculty_name,department=department_name)
+        
+
+        
+    return render(request, "App_Folder_HTML/home.html",context=params)
+
+
+def detail(request,faculty,department):
+
+    
+    faculty_and_department = TemplateSelect.objects.filter(faculty=faculty,department=department).first()
+    labo_name_list= faculty_and_department.room.split(',')
+    print(labo_name_list)
+
+    params = {'name':faculty_and_department,'labo_name':labo_name_list}
+
+   
+    return render(request,f"faculty_and_department/base1.html",context=params)

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <title>ホーム</title>
+    <link rel="stylesheet" href='{% static "App_Folder_css/hedder.css"%}' />
+</head>
+
+<body>
+    <h1>{{ name }}</h1>
+    {% for value in labo_name %}
+        <p>{{ value }}</p>
+    {% endfor %}
+
+
+</body>

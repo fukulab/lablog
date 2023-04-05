@@ -6,15 +6,25 @@ from django.contrib.auth.models import User
 class Account(models.Model):
 
     # ユーザー認証のインスタンス(1vs1関係)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE) #Userにも保存されている。
+    #追加の部分がAccountのテーブルに保存されている。
     # 追加フィールド
-    # last_name = models.CharField(max_length=100)
-    # first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100)
     account_image = models.ImageField(upload_to="profile_pics",blank=True)
 
-    def __str__(self):
+    def __str__(self): #管理画面で見るときに役に立つ。
         return self.user.username
+
+class TemplateSelect(models.Model):
+
+    faculty = models.CharField(max_length=100)
+    department = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="profile_pics",blank=True)
+    room = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f'{self.faculty}_{self.department}'
     
 
 SCORE_CHOICES = [
@@ -49,3 +59,6 @@ class Review(models.Model):
         percent3 = round(self.score3 / 5 * 100)
         percent4 = round(self.score4 / 5 * 100)
         return percent1,percent2,percent3,percent4
+        
+
+
