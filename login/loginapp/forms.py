@@ -16,13 +16,13 @@ class AccountForm(forms.ModelForm):
         # フィールド名指定　
         labels = {'username':"ユーザーID",'email':"メール"}
 
-class AddAccountForm(forms.ModelForm):
-    class Meta():
-        # モデルクラスを指定
-        model = Account
-        #fields = ('last_name','first_name','account_image',)
-        fields = ('account_image',)
-        labels = {'account_image':"写真アップロード",}
+# class AddAccountForm(forms.ModelForm):
+#     class Meta():
+#         # モデルクラスを指定
+#         model = Account
+#         #fields = ('last_name','first_name','account_image',)
+#         fields = ('account_image',)
+#         labels = {'account_image':"写真アップロード",}
 
 
 class ReviewForm(forms.ModelForm):   
