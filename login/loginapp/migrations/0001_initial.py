@@ -20,6 +20,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('faculty', models.CharField(max_length=100)),
                 ('department', models.CharField(max_length=100)),
+<<<<<<< HEAD
             ],
         ),
         migrations.CreateModel(
@@ -31,15 +32,25 @@ class Migration(migrations.Migration):
                 ('image', models.ImageField(blank=True, upload_to='profile_pics')),
                 ('comment', models.CharField(max_length=100)),
                 ('department_faculty', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='loginapp.templateselect')),
+=======
+                ('image', models.ImageField(blank=True, upload_to='profile_pics')),
+                ('room', models.CharField(max_length=100)),
+                ('professor', models.CharField(max_length=100)),
+                ('comment', models.CharField(max_length=100)),
+                ('url', models.URLField(blank=True)),
+>>>>>>> a47883869453f0233d844f2a64389ed60caa68d5
             ],
         ),
         migrations.CreateModel(
             name='Account',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+<<<<<<< HEAD
                 ('last_name', models.CharField(max_length=100)),
                 ('first_name', models.CharField(max_length=100)),
                 ('account_image', models.ImageField(blank=True, upload_to='profile_pics')),
+=======
+>>>>>>> a47883869453f0233d844f2a64389ed60caa68d5
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),

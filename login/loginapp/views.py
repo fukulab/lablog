@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+=======
+from django.shortcuts import render
+from django.views.generic import TemplateView,View #テンプレートタグ
+from .forms import AccountForm,ReviewForm #ユーザーアカウントフォーム
+from django.views.generic import TemplateView
+from .models import Review
+from django.shortcuts import redirect
+>>>>>>> a47883869453f0233d844f2a64389ed60caa68d5
 import os
 from django.shortcuts import render, redirect
 from django.views.generic import View,TemplateView #テンプレートタグ
@@ -5,6 +14,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> a47883869453f0233d844f2a64389ed60caa68d5
 from django.db.models import Avg
 
 from .name_list import NAME_LIST
@@ -43,7 +57,10 @@ def Login(request):
 
 
 #ログアウト
+<<<<<<< HEAD
 #@login_required
+=======
+>>>>>>> a47883869453f0233d844f2a64389ed60caa68d5
 def Logout(request):
     logout(request)
     # ログイン画面遷移
@@ -57,17 +74,29 @@ class  AccountRegistration(TemplateView):
         self.params = {
         "AccountCreate":False,
         "account_form": AccountForm(),
+<<<<<<< HEAD
+=======
+        # "add_account_form":AddAccountForm(),
+>>>>>>> a47883869453f0233d844f2a64389ed60caa68d5
         }
 
     #Get処理
     def get(self,request):
         self.params["account_form"] = AccountForm()
+<<<<<<< HEAD
+=======
+        # self.params["add_account_form"] = AddAccountForm()
+>>>>>>> a47883869453f0233d844f2a64389ed60caa68d5
         self.params["AccountCreate"] = False
         return render(request,"App_Folder_HTML/register.html",context=self.params)
 
     #Post処理
     def post(self,request):
         self.params["account_form"] = AccountForm(data=request.POST)
+<<<<<<< HEAD
+=======
+        # self.params["add_account_form"] = AddAccountForm(data=request.POST)
+>>>>>>> a47883869453f0233d844f2a64389ed60caa68d5
 
         #フォーム入力の有効検証
         if self.params["account_form"].is_valid():
@@ -77,6 +106,19 @@ class  AccountRegistration(TemplateView):
             account.set_password(account.password)
             # ハッシュ化パスワード更新
             account.save()
+
+            # # 下記追加情報
+            # # 下記操作のため、コミットなし
+            # add_account = self.params["add_account_form"].save(commit=False)
+            # # AccountForm & AddAccountForm 1vs1 紐付け
+            # add_account.user = account
+
+            # # 画像アップロード有無検証
+            # if 'account_image' in request.FILES:
+            #     add_account.account_image = request.FILES['account_image']
+
+            # # モデル保存
+            # add_account.save()
 
             # アカウント作成情報更新
             self.params["AccountCreate"] = True
@@ -143,13 +185,20 @@ def home(request):
 
 def facaluty_department(request,faculty,department):
     
-    faculty_and_department = TemplateSelect.objects.filter(faculty=faculty,department=department).first()
-    labo_name_list= faculty_and_department.room.split(',')
+    # faculty_and_department = TemplateSelect.objects.filter(faculty=faculty,department=department).first()
+    # labo_name_list= faculty_and_department.room.split(',')
+    # print(labo_name_list)
+
+    # params = {'name':faculty_and_department,'labo_name':labo_name_list}
+    faculty_and_department = TemplateSelect.objects.filter(faculty=faculty,department=department).all()
+    name = faculty_and_department.first()
+    labo_name_list = [data.room for data in faculty_and_department]
     print(labo_name_list)
 
-    params = {'name':faculty_and_department,'labo_name':labo_name_list}
+    params = {'name':name,'labo_name':labo_name_list}
 
     return render(request,f"faculty_and_department/base1.html",context=params)
 
 def detail(request):
+    
     return render(request,"faculty_and_department/detail.html")
