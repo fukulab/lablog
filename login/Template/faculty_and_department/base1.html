@@ -9,9 +9,12 @@
 
 <body>
     <h1>{{ name }}</h1>
-    {% for value in labo_name %}
-        <p><a href="{% url 'detail' %}">{{ value }}</p></a>
+    <form method="post" name="form1" action="{% url 'detail' %}">
+        {% csrf_token %}
+    {% for value in lab %}
+    <input type="hidden" name="labid" value={{value.id}}>
+        <p><a href="javascript:form1.submit()">{{ value.room }}</p></a>
     {% endfor %}
-
+    </form>
 
 </body>
