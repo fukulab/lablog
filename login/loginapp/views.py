@@ -166,13 +166,14 @@ def facaluty_department(request,faculty,department):
 
     # params = {'name':faculty_and_department,'labo_name':labo_name_list}
     faculty_and_department = TemplateSelect.objects.filter(faculty=faculty,department=department).all()
-   
-    
+    name = f'{faculty}_{department}'
 
-    params = {'name':faculty_and_department}
+    # params = {'name':name,'labo_name':labo_name_list}
+    params = {'name':name,'lab':faculty_and_department}
 
     return render(request,f"faculty_and_department/base1.html",context=params)
 
 def detail(request):
-    
-    return render(request,"faculty_and_department/detail.html")
+    lab_id = request.POST.get('labid')
+    params = {'labid': lab_id}
+    return render(request,"faculty_and_department/detail.html",params)

@@ -8,17 +8,13 @@
 </head>
 
 <body>
-    <h1>{{ nam }}</h1>
-    {% for value in name %}
-    <input type="hidden" name={{nalue.room}} value={{value.id}}>
-        <p><a href="{% url 'detail' %}">{{ value.room }}</p></a>
-    
-   
+    <h1>{{ name }}</h1>
+    <form method="post" name="form1" action="{% url 'detail' %}">
+        {% csrf_token %}
+    {% for value in lab %}
+    <input type="hidden" name="labid" value={{value.id}}>
+        <p><a href="javascript:form1.submit()">{{ value.room }}</p></a>
     {% endfor %}
-    <script language="javascript" type="text/javascript">
-        function OnButtonClick() {
-            target = document.getElementById("output");
-            target.innerHTML = "Penguin";
-        }
-    </script>
+    </form>
+
 </body>
