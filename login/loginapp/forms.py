@@ -1,11 +1,12 @@
 from django import forms
 from django.contrib.auth.models import User
+
 from .models import Account,Review
 
 # フォームクラス作成
 #書き換える場合フィールド書けばいい。
 class AccountForm(forms.ModelForm):
-    # パスワード入力：非表示対応
+    # Userの上書き
     password = forms.CharField(widget=forms.PasswordInput(),label="パスワード")
 
     class Meta():
@@ -15,14 +16,6 @@ class AccountForm(forms.ModelForm):
         fields = ('username','email','password')
         # フィールド名指定　
         labels = {'username':"ユーザーID",'email':"メール"}
-
-class AddAccountForm(forms.ModelForm):
-    class Meta():
-        # モデルクラスを指定
-        model = Account
-        #fields = ('last_name','first_name','account_image',)
-        fields = ('account_image',)
-        labels = {'account_image':"写真アップロード",}
 
 
 class ReviewForm(forms.ModelForm):   

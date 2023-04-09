@@ -1,6 +1,8 @@
 from django.db import models
-# ユーザー認証
 from django.contrib.auth.models import User
+
+#ForeignKeyとoneTooneはここ見ればいい
+# https://note.com/shinya_hd/n/n240c3613b60f
 
 # ユーザーアカウントのモデルクラス
 class Account(models.Model):
@@ -15,17 +17,20 @@ class Account(models.Model):
 
     def __str__(self): #管理画面で見るときに役に立つ。
         return self.user.username
+    
 
 class TemplateSelect(models.Model):
 
     faculty = models.CharField(max_length=100)
     department = models.CharField(max_length=100)
+    name = models.CharField(max_length=20)
+    professor = models.CharField(max_length=20)
     image = models.ImageField(upload_to="profile_pics",blank=True)
-    room = models.CharField(max_length=100)
+    comment = models.CharField(max_length=100)
 
     def __str__(self):
         return f'{self.faculty}_{self.department}'
-    
+
 
 SCORE_CHOICES = [
     (1, '★'),

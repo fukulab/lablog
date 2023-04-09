@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <title>ホーム</title>
     <link rel="stylesheet" href='{% static "App_Folder_css/hedder.css"%}' />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2/dist/vue.global.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -27,10 +28,10 @@
             {% else %}
             <ul class="nav-list">
                 <li class="nav-list-item">
-                    <a href="{% url 'Login' %}">ログイン</a>
+                    <a class=login href="{% url 'Login' %}">ログイン</a>
                 </li>
                 <li class="nav-list-item">
-                    <a href="{% url 'register' %}">新規登録</a>
+                    <a class=login href="{% url 'register' %}">新規登録</a>
                 </li>
             </ul>
             {% endif %}
@@ -42,7 +43,7 @@
         <span class="select_label">学部を選択してください</span>
         <span class="select_box">
             <select name="学部" id="学部">
-                 <!-- valueが送信させられる。 -->
+                <!-- valueが送信させられる。 -->
                 <option value="">選択してください</option>
                 <option value="文学部">文学部</option>
                 <option value="国際人間科学部">国際人間科学部</option>
@@ -53,7 +54,7 @@
                 <option value="海洋政策科学部">海洋政策科学部</option>
                 <option value="工学部">工学部</option>
                 <option value="農学部">農学部</option>
-              
+
             </select>
         </span>
         <span class="select_label">学科を選択してください</span>
@@ -107,10 +108,50 @@
             })
         })
     </script>
+    <div id="counter">
+        Counter: [[ counter ]]
+    </div>
+    <script>
+        const Counter = {
+            data() {
+                return {
+                    counter: 0
+                }
+            },
+            mounted() {
+                setInterval(() => {
+                    this.counter++
+                }, 1000)
+            },
+            delimiters: ['[[', ']]']
+        }
 
-    <h1>評価シート</h1>
-  <h1>ここにコンテンツを載せよう！</h1>
-  <a href="{% url 'review' %}">評価</a>
+        Vue.createApp(
+            Counter
+        ).mount('#counter')
+
+    </script>
+    <section class="p-panel-bg-img  ">
+        <a href="{% url 'detail' %}">
+            <div class="p-panel-bg-img__img c-img-hover-zoom ">
+                <img src='{% static "App_Folder_css/22c5152171e7f062800be66b2ae1cf03_t.png"%}'
+                    class="js-object-fit-images" alt="" disablewebediting="False">
+            </div>
+            <div class="p-panel-bg-img__body js-match-height" style="">
+                <h3 class="c-head-md js-line-clamp-02 js-match-height-01 u-mb-small" style="">
+                    SCM・ロジスティクス
+                </h3>
+                <p class=" js-line-clamp-03">
+                    物流が変わる ～ロジスティクス改革～
+                </p>
+                <p class="p-block__link "><span class="c-btn-text-arrow c-btn-text-arrow--white">詳細はこちら
+                    ::after</span>
+                </p>
+            </div>
+        </a>
+    </section>
+    
+    
 </body>
 
 </html>

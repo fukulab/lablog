@@ -1,6 +1,7 @@
 import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE','login.settings')
 from django import setup
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE','login.settings')
 setup()
 
 from loginapp.models import TemplateSelect
