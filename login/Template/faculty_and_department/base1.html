@@ -8,11 +8,17 @@
 </head>
 
 <body>
-    <h1>{{ name }}</h1>
-    {% for value in labo_name %}
-        <p><a href="{% url 'detail' %}">{{ value }}</p></a>
+    <h1>{{ nam }}</h1>
+    {% for value in name %}
+    <input type="hidden" name={{nalue.room}} value={{value.id}}>
+        <p><a href="{% url 'detail' %}">{{ value.room }}</p></a>
     
-
    
     {% endfor %}
+    <script language="javascript" type="text/javascript">
+        function OnButtonClick() {
+            target = document.getElementById("output");
+            target.innerHTML = "Penguin";
+        }
+    </script>
 </body>

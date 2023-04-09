@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Account,TemplateSelect, Room
+from .models import Account,TemplateSelect
 from .models import Review
 
 admin.site.register(Account)
@@ -11,4 +11,4 @@ class ReviewAdmin(admin.ModelAdmin):
     list_editable = ('score1', 'score2', 'score3', 'score4')
 
 admin.site.register(TemplateSelect)
-admin.site.register(Room)
+
