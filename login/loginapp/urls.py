@@ -10,6 +10,5 @@ urlpatterns = [
     path("<str:faculty>_<str:department>",views.facaluty_department,name="facaluty_department"),
     path("detail",views.detail,name='detail'),
     path('review',views.ReviewLabolatory.as_view(), name='review'),
-    path("<str:faculty>/<str:department>",views.detail,name="detail"),
    
 ]

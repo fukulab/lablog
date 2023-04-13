@@ -33,8 +33,3 @@ class ReviewForm(forms.ModelForm):
         # フィールド名指定
         labels = {'score1':'担当教授の干渉度','score2':'先輩・後輩との関わり','score3':'研究室の設備','score4':'学会のレベル', 'comment':'コメント'}
 
-class Select_d_f(forms.Form):
-    choice_de = (
-
-    )
-    de = forms.ChoiceField()
