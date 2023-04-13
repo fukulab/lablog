@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 {% load static %}
+<hmtl>
 
 <head>
     <meta charset="utf-8">
     <title>ホーム</title>
-    <link rel="stylesheet" href='{% static "App_Folder_css/hedder.css"%}' />
+    <link rel="stylesheet" href='{% static "App_Folder_css/base1.css" %}' />
 </head>
 
 <body>
     <h1>{{ name }}</h1>
-    <form method="post" name="form1" action="{% url 'detail' %}">
-        {% csrf_token %}
     {% for value in lab %}
-    <input type="hidden" name="labid" value={{value.id}}>
-        <p><a href="javascript:form1.submit()">{{ value.room }}</p></a>
-    {% endfor %}
+    <form method="post" name="form{{value.id}}" action="{% url 'detail' %}">
+    {% csrf_token %}
+        <p> 
+            <input type="hidden" name="labid" value={{[value.id,value.name]}}>
+            <a href="javascript:document.form{{value.id}}.submit()">{{ value.room }}</a>
+        </p>
     </form>
-
+    {% endfor %}
 </body>
+
+</hmtl>

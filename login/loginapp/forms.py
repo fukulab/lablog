@@ -1,11 +1,12 @@
 from django import forms
 from django.contrib.auth.models import User
+
 from .models import Account,Review
 
 # フォームクラス作成
 #書き換える場合フィールド書けばいい。
 class AccountForm(forms.ModelForm):
-    # パスワード入力：非表示対応
+    # Userの上書き
     password = forms.CharField(widget=forms.PasswordInput(),label="パスワード")
 
     class Meta():
@@ -32,8 +33,3 @@ class ReviewForm(forms.ModelForm):
         # フィールド名指定
         labels = {'score1':'担当教授の干渉度','score2':'先輩・後輩との関わり','score3':'研究室の設備','score4':'学会のレベル', 'comment':'コメント'}
 
-class Select_d_f(forms.Form):
-    choice_de = (
-
-    )
-    de = forms.ChoiceField()

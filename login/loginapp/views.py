@@ -1,23 +1,18 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView,View #テンプレートタグ
-from .forms import AccountForm,ReviewForm #ユーザーアカウントフォーム
-from django.views.generic import TemplateView
-from .models import Review
-from django.shortcuts import redirect
 import os
-# ログイン・ログアウト処理に利用
+from django.shortcuts import render, redirect
+from django.views.generic import TemplateView #テンプレートタグ
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-
-
 from django.db.models import Avg
+
 from .name_list import NAME_LIST
-from .models import TemplateSelect
+from .models import TemplateSelect, Review
+from .forms import AccountForm, ReviewForm #ユーザーアカウントフォーム
+
 #ログイン
 #ログインの返答もこの関数を呼ぶ。
-
 def Login(request):
     # POST
     if request.method == 'POST':
@@ -48,6 +43,7 @@ def Login(request):
 
 
 #ログアウト
+#@login_required
 def Logout(request):
     logout(request)
     # ログイン画面遷移
@@ -73,17 +69,21 @@ class  AccountRegistration(TemplateView):
 
     #Post処理
     def post(self,request):
+      
         self.params["account_form"] = AccountForm(data=request.POST)
+       
         # self.params["add_account_form"] = AddAccountForm(data=request.POST)
 
         #フォーム入力の有効検証
         if self.params["account_form"].is_valid():
             # アカウント情報をDB保存
-            account = self.params["account_form"].save()
+            account = self.params["account_form"].save(commit=False)
+     
             # パスワードをハッシュ化
             account.set_password(account.password)
             # ハッシュ化パスワード更新
             account.save()
+            
 
             # # 下記追加情報
             # # 下記操作のため、コミットなし
@@ -121,16 +121,20 @@ class  ReviewLabolatory(TemplateView):
     def get(self,request):
         self.params["lab_form"] = ReviewForm()
         self.params["LabCreate"] = False
+        print(2)
         return render(request,"App_Folder_HTML/review.html",context=self.params)
 
     #Post処理
     def post(self,request):
         self.params["lab_form"] = ReviewForm(data=request.POST)
+        print(1)
 
         #フォーム入力の有効検証
         if self.params["lab_form"].is_valid():
             # アカウント情報をDB保存
-            lab = self.params["lab_form"].save()
+            lab = self.params["lab_form"].save(commit=False)
+            lab.user = request.user
+            lab.save()
             # # パスワードをハッシュ化
             # lab.set_password(lab.password)
             # # ハッシュ化パスワード更新
@@ -146,18 +150,11 @@ class  ReviewLabolatory(TemplateView):
         return render(request,"App_Folder_HTML/review.html",context=self.params)
     
 
-class Pulldown(View):
-    def get(self, request):
-         return render(request,"App_Folder_HTML/department_and_faculty.html")
-
-    def post(self, request, *args, **kwargs):
-        pass
-
 #ホーム
-# @login_required
 def home(request):
     params = {"UserID":request.user,}
     if request.method == 'POST':
+      
         faculty_name = request.POST.get('学部')
         department_name = request.POST.get('学科')
         name = f"{faculty_name}_{department_name}"
