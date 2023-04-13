@@ -23,7 +23,7 @@ class TemplateSelect(models.Model):
     room = models.CharField(max_length=100)#研究室
     professor = models.CharField(max_length=100)
     comment = models.CharField(max_length=100)
-    url = models.URLField(blank=True)
+    url = models.URLField(max_length=1000,blank=True)
 
     def __str__(self):
         return f'{self.faculty}_{self.department}'

@@ -11,6 +11,15 @@ from .name_list import NAME_LIST
 from .models import TemplateSelect, Review
 from .forms import AccountForm, ReviewForm #ユーザーアカウントフォーム
 
+
+from django.contrib.auth.mixins import UserPassesTestMixin
+
+class MyCustomMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_authenticated
+
+    def handle_no_permission(self):
+        return redirect(reverse('logno'))
 #ログイン
 #ログインの返答もこの関数を呼ぶ。
 def Login(request):
@@ -43,7 +52,7 @@ def Login(request):
 
 
 #ログアウト
-#@login_required
+@login_required
 def Logout(request):
     logout(request)
     # ログイン画面遷移
@@ -108,7 +117,7 @@ class  AccountRegistration(TemplateView):
     
 
 #研究室の評価
-class  ReviewLabolatory(TemplateView):
+class  ReviewLabolatory(MyCustomMixin, TemplateView):
 
     def __init__(self):
         self.params = {
@@ -117,13 +126,14 @@ class  ReviewLabolatory(TemplateView):
         }
 
     #Get処理
+    
     def get(self,request):
         self.params["lab_form"] = ReviewForm()
         self.params["LabCreate"] = False
-        print(2)
         return render(request,"App_Folder_HTML/review.html",context=self.params)
         
     #Post処理
+   
     def post(self,request):
         labid = request.GET.get('labid')
         labname = request.GET.get('labname')
@@ -184,5 +194,13 @@ def facaluty_department(request,faculty,department):
 
 def detail(request):
     lab_id = request.POST.get('labid')
-    params = {'labid': lab_id}
-    return render(request,"faculty_and_department/detail.html",params)
+    reviews = Review.objects.filter(lab_id=lab_id)
+    percent = [0, 0, 0, 0]
+    for review in reviews:
+        percent = [x + y for x,y in zip(percent, review.get_percent())]
+    params = {'labid': lab_id,'reviews':percent}
+    print(percent)
+    return render(request,"faculty_and_department/detail.html",context = params)
+
+def logno(request):
+    return render(request,"App_Folder_HTML/logno.html")

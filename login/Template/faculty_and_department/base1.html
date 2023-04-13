@@ -10,7 +10,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
     <h1>{{ name }}</h1>   
     {% for value in lab %}
     <form method="post" name="formview{{value.id}}" action="{% url 'detail' %}">
@@ -30,18 +29,5 @@
         <a href="javascript:form{{value.id}}.submit()">{{ value.room }}評価</a></p>
     </form>
     {%endfor%}
-=======
-    <h1>{{ name }}</h1>
-    {% for value in lab %}
-    <form method="post" name="form{{value.id}}" action="{% url 'detail' %}">
-    {% csrf_token %}
-        <p> 
-            <input type="hidden" name="labid" value={{[value.id,value.name]}}>
-            <a href="javascript:document.form{{value.id}}.submit()">{{ value.room }}</a>
-        </p>
-    </form>
-    {% endfor %}
-</body>
->>>>>>> a041287dc5bf7a1dcd53d8218a93cfe2f117c852
 
 </hmtl>

@@ -563,16 +563,6 @@ TemplateSelect.objects.create(
     faculty = "工学部",
     department = "建築学科",
     image = "",
-    room = "",
-    professor = "",
-    comment = "",
-    url = ""
-)
-
-TemplateSelect.objects.create(
-    faculty = "工学部",
-    department = "建築学科",
-    image = "",
     room = "建築・都市設計研究室",
     professor = "栗山尚子（准教授）",
     comment = "",
@@ -965,7 +955,7 @@ TemplateSelect.objects.create(
     faculty = "農学部",
     department = "資源生命科学科",
     image = "",
-   朗 room = "動物多様性利用科学",
+    room = "動物多様性利用科学",
     professor = "大澤朗",
     comment = "",
     url = "https://www.research.kobe-u.ac.jp/ans-koala/main.html"
@@ -1132,7 +1122,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "生物化学",
     professor = "宇野知秀",
@@ -1142,7 +1132,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "食品・栄養化学",
     professor = "橋本堂史（准教授）",
@@ -1152,7 +1142,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "天然有機分子化学",
     professor = "久世雅樹",
@@ -1162,7 +1152,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "有機機能分子化学",
     professor = "",
@@ -1172,7 +1162,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "植物機能化学",
     professor = "杉本幸裕",
@@ -1182,7 +1172,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "動物資源利用化学",
     professor = "白井康仁",
@@ -1192,7 +1182,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "植物機能化学",
     professor = "杉本幸裕",
@@ -1202,7 +1192,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "微生物機能化学",
     professor = "吉田健一",
@@ -1212,7 +1202,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "微生物資源化学",
     professor = "竹中慎治",
@@ -1222,7 +1212,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "生物機能開発化学",
     professor = "芦田均",
@@ -1232,7 +1222,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "土壌学",
     professor = "藤嶽暢英",
@@ -1242,7 +1232,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "植物栄養学",
     professor = "三宅親弘",
@@ -1252,7 +1242,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "植物遺伝学",
     professor = "松岡由浩",
@@ -1262,7 +1252,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "栽培植物進化学",
     professor = "森直樹",
@@ -1272,7 +1262,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "細胞機能構造学",
     professor = "中屋敷均",
@@ -1282,7 +1272,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "環境物質科学",
     professor = "今石浩正",
@@ -1292,7 +1282,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "植物病理学",
     professor = "土佐幸雄",
@@ -1302,7 +1292,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "昆虫分子機能科学",
     professor = "坂本克彦",
@@ -1312,7 +1302,7 @@ TemplateSelect.objects.create(
 
 TemplateSelect.objects.create(
     faculty = "農学部",
-    department = "応用生命科学",
+    department = "生命機能科学科",
     image = "",
     room = "昆虫多様性生態学",
     professor = "杉浦真治（准教授）",
@@ -1354,7 +1344,7 @@ TemplateSelect.objects.create(
     faculty = "理学部",
     department = "生物学科",
     image = "",
-    room = "",
+    room = "岩崎研究室",
     professor = "岩崎哲史",
     comment = "",
     url = ""
@@ -1365,7 +1355,7 @@ TemplateSelect.objects.create(
     faculty = "理学部",
     department = "生物学科",
     image = "",
-    room = "",
+    room = "大沼研究室",
     professor = "大沼亮",
     comment = "",
     url = "https://onuma-endosymbiosis.com/"
@@ -1375,7 +1365,7 @@ TemplateSelect.objects.create(
     faculty = "理学部",
     department = "生物学科",
     image = "",
-    room = "",
+    room = "奥田研究室",
     professor = "奥田昇",
     comment = "",
     url = ""
@@ -1385,7 +1375,7 @@ TemplateSelect.objects.create(
     faculty = "理学部",
     department = "生物学科",
     image = "",
-    room = "",
+    room = "影山研究室",
     professor = "影山裕二（准教授）",
     comment = "",
     url = ""
@@ -1405,7 +1395,7 @@ TemplateSelect.objects.create(
     faculty = "理学部",
     department = "生物学科",
     image = "",
-    room = "",
+    room = "鎌田研究室",
     professor = "鎌田真司",
     comment = "",
     url = ""
@@ -1415,7 +1405,7 @@ TemplateSelect.objects.create(
     faculty = "理学部",
     department = "生物学科",
     image = "",
-    room = "",
+    room = "川井研究室",
     professor = "川井浩史",
     comment = "",
     url = ""
@@ -1425,7 +1415,7 @@ TemplateSelect.objects.create(
     faculty = "理学部",
     department = "生物学科",
     image = "",
-    room = "",
+    room = "河村研究室",
     professor = "河村伸一",
     comment = "",
     url = ""
@@ -1495,7 +1485,7 @@ TemplateSelect.objects.create(
     faculty = "理学部",
     department = "生物学科",
     image = "",
-    room = "",
+    room = "佐倉研究室",
     professor = "佐倉緑（准教授）",
     comment = "",
     url = ""
@@ -1515,7 +1505,7 @@ TemplateSelect.objects.create(
     faculty = "理学部",
     department = "生物学科",
     image = "",
-    room = "",
+    room = "塚本研究室",
     professor = "塚本寿夫",
     comment = "",
     url = ""
@@ -1525,7 +1515,7 @@ TemplateSelect.objects.create(
     faculty = "理学部",
     department = "生物学科",
     image = "",
-    room = "",
+    room = "辻研究室",
     professor = "辻かおる（准教授）",
     comment = "",
     url = ""
@@ -1555,27 +1545,18 @@ TemplateSelect.objects.create(
     faculty = "理学部",
     department = "生物学科",
     image = "",
-    room = "",
+    room = "上井研究室",
     professor = "上井進也",
     comment = "",
     url = ""
 )
 
-TemplateSelect.objects.create(
-    faculty = "理学部",
-    department = "生物学科",
-    image = "",
-    room = "",
-    professor = "",
-    comment = "",
-    url = ""
-)
 
 TemplateSelect.objects.create(
     faculty = "理学部",
     department = "生物学科",
     image = "",
-    room = "",
+    room = "森田研究室",
     professor = "森田光洋（准教授）",
     comment = "",
     url = ""
@@ -1595,7 +1576,7 @@ TemplateSelect.objects.create(
     faculty = "理学部",
     department = "生物学科",
     image = "",
-    room = "",
+    room = "大和研究室",
     professor = "大和誠司",
     comment = "",
     url = ""
@@ -1645,7 +1626,7 @@ TemplateSelect.objects.create(
     faculty = "理学部",
     department = "化学科",
     image = "",
-    room = "",
+    room = "木村研究室",
     professor = "木村建次郎（学長戦略教授）",
     comment = "",
     url = "https://www.kobe-u.ac.jp/research_at_kobe/NEWS/people/researcher0012.html"
@@ -1668,7 +1649,7 @@ TemplateSelect.objects.create(
     room = "立川研究室",
     professor = "立川貴士",
     comment = "",
-    url = "http://www2.kobe-u.ac.jp/~tach/
+    url = "http://www2.kobe-u.ac.jp/~tach/"
 )
 
 TemplateSelect.objects.create(
@@ -1959,25 +1940,5 @@ TemplateSelect.objects.create(
     professor = "川畑拓矢（客員教授）",
     comment = "",
     url = "http://www.planet.sci.kobe-u.ac.jp/mri/index_MRI.html"
-)
-
-TemplateSelect.objects.create(
-    faculty = "理学部",
-    department = "惑星科学科",
-    image = "",
-    room = "",
-    professor = "",
-    comment = "",
-    url = ""
-)
-
-TemplateSelect.objects.create(
-    faculty = "理学部",
-    department = "惑星科学科",
-    image = "",
-    room = "",
-    professor = "",
-    comment = "",
-    url = ""
 )
 

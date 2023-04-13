@@ -10,5 +10,6 @@ urlpatterns = [
     path("<str:faculty>_<str:department>",views.facaluty_department,name="facaluty_department"),
     path("detail",views.detail,name='detail'),
     path('review',views.ReviewLabolatory.as_view(), name='review'),
+    path('logno',views.logno, name='logno')
    
 ]
