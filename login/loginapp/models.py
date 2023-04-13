@@ -1,6 +1,8 @@
 from django.db import models
-# ユーザー認証
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+#ForeignKeyとoneTooneはここ見ればいい
+# https://note.com/shinya_hd/n/n240c3613b60f
 
 # ユーザーアカウントのモデルクラス
 class Account(models.Model):
@@ -9,11 +11,14 @@ class Account(models.Model):
     #追加の部分がAccountのテーブルに保存されている。
     def __str__(self): #管理画面で見るときに役に立つ。
         return self.user.username
+    
 
 class TemplateSelect(models.Model):
 
     faculty = models.CharField(max_length=100)
     department = models.CharField(max_length=100)
+    name = models.CharField(max_length=20)
+    professor = models.CharField(max_length=20)
     image = models.ImageField(upload_to="profile_pics",blank=True)
     room = models.CharField(max_length=100)#研究室
     professor = models.CharField(max_length=100)
@@ -22,7 +27,7 @@ class TemplateSelect(models.Model):
 
     def __str__(self):
         return f'{self.faculty}_{self.department}'
-    
+
 
 SCORE_CHOICES = [
     (1, '★'),
@@ -33,9 +38,10 @@ SCORE_CHOICES = [
 ]
 
 class Review(models.Model):
+   # lab_id = models.ForeignKey(TemplateSelect,on_delete=models.CASCADE)
     lab_id = models.CharField('研究室ID', max_length=10, blank=False)
     lab_name = models.CharField('研究室名', max_length=200, blank=False)
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
     comment = models.TextField(verbose_name='レビューコメント', blank=False)
     score1 = models.PositiveSmallIntegerField(verbose_name='担当教授の干渉度', choices=SCORE_CHOICES, default='3')
     score2 = models.PositiveSmallIntegerField(verbose_name='先輩・後輩との関わり', choices=SCORE_CHOICES, default='3')
@@ -61,6 +67,9 @@ class Review(models.Model):
         percent3 = round(self.score3 / 5 * 100)
         percent4 = round(self.score4 / 5 * 100)
         return percent1,percent2,percent3,percent4
+    
+
+
         
 
 
