@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 
+
 <head>
     <meta charset="utf-8">
     <title>ホーム</title>
@@ -8,13 +9,24 @@
 </head>
 
 <body>
-    <h1>{{ name }}</h1>
-    <form method="post" name="form1" action="{% url 'detail' %}">
-        {% csrf_token %}
+    <h1>{{ name }}</h1>   
     {% for value in lab %}
+    <form method="post" name="formview{{value.id}}" action="{% url 'detail' %}">
+        {% csrf_token %}
+    <p>    
     <input type="hidden" name="labid" value={{value.id}}>
-        <p><a href="javascript:form1.submit()">{{ value.room }}</p></a>
-    {% endfor %}
+        <a href="javascript:formview{{value.id}}.submit()">{{ value.room }}</a></p>
     </form>
+    {%endfor%}
+
+    {% for value in lab %}
+    <form method="get" name="form{{value.id}}" action="{% url 'review' %}">
+        {% csrf_token %}
+    <p>    
+    <input type="hidden" name="labid" value={{value.id}}>
+    <input type="hidden" name="labname" value={{value.room}}>
+        <a href="javascript:form{{value.id}}.submit()">{{ value.room }}評価</a></p>
+    </form>
+    {%endfor%}
 
 </body>

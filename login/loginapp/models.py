@@ -45,7 +45,12 @@ class Review(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = ('lab_id', 'user')
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user','lab_id'],
+                name="lab_unique"
+            ),
+        ]
 
     def __str__(self):
         return str(self.lab_id)

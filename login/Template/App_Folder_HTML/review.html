@@ -9,13 +9,14 @@
 </head>
 
 <body>
-<h1>研究室の評価</h1>
+<h1> 研究室{{labid}}の評価</h1>
 {% if LabCreate %}
    <h1>登録完了!</h1>
    <p class="message">こちらから
     <a href="{% url 'home' %}">ホームに</a>
     </p>
  {% else %}
+ 
    <div class="reg">
    <table class="reg_form">
    <div class="reg">

@@ -79,7 +79,7 @@ class  AccountRegistration(TemplateView):
         #フォーム入力の有効検証
         if self.params["account_form"].is_valid():
             # アカウント情報をDB保存
-            account = self.params["account_form"].save()
+            account = self.params["account_form"].save(commit=False)
             # パスワードをハッシュ化
             account.set_password(account.password)
             # ハッシュ化パスワード更新
@@ -114,7 +114,7 @@ class  ReviewLabolatory(TemplateView):
     def __init__(self):
         self.params = {
         "LabCreate":False,
-        "lab_form": Review()
+        "lab_form": Review(),
         }
 
     #Get処理
@@ -122,19 +122,24 @@ class  ReviewLabolatory(TemplateView):
         self.params["lab_form"] = ReviewForm()
         self.params["LabCreate"] = False
         return render(request,"App_Folder_HTML/review.html",context=self.params)
-
+        
     #Post処理
     def post(self,request):
-        self.params["lab_form"] = ReviewForm(data=request.POST)
+        labid = request.GET.get('labid')
+        labname = request.GET.get('labname')
+        self.params["lab_form"] = ReviewForm(data= request.POST)
 
         #フォーム入力の有効検証
         if self.params["lab_form"].is_valid():
             # アカウント情報をDB保存
-            lab = self.params["lab_form"].save()
+            lab = self.params["lab_form"].save(commit=False)
+            lab.lab_id = labid
+            lab.lab_name = labname
+            lab.user = request.user
             # # パスワードをハッシュ化
             # lab.set_password(lab.password)
             # # ハッシュ化パスワード更新
-            # lab.save()
+            lab.save()
 
             # アカウント作成情報更新
             self.params["LabCreate"] = True
@@ -144,7 +149,7 @@ class  ReviewLabolatory(TemplateView):
             print(self.params["lab_form"].errors)
 
         return render(request,"App_Folder_HTML/review.html",context=self.params)
-    
+        # return print(self.params)
 
 class Pulldown(View):
     def get(self, request):
