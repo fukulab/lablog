@@ -187,7 +187,7 @@ def facaluty_department(request,faculty,department):
 
     # params = {'name':faculty_and_department,'labo_name':labo_name_list}
     faculty_and_department = TemplateSelect.objects.filter(faculty=faculty,department=department).all()
-    name = f'{faculty}_{department}'
+    name = f'{faculty}{department}'
 
     # params = {'name':name,'labo_name':labo_name_list}
     params = {'name':name,'lab':faculty_and_department}
