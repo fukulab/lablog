@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView #テンプレートタグ
 from django.contrib.auth import authenticate, login, logout
@@ -6,6 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
+from django.db import models
 
 from .name_list import NAME_LIST
 from .models import TemplateSelect, Review
@@ -195,11 +197,16 @@ def facaluty_department(request,faculty,department):
 def detail(request):
     lab_id = request.POST.get('labid')
     reviews = Review.objects.filter(lab_id=lab_id)
+    number = Review.objects.filter(lab_id=lab_id).count()
     percent = [0, 0, 0, 0]
+    comment = []
     for review in reviews:
         percent = [x + y for x,y in zip(percent, review.get_percent())]
-    params = {'labid': lab_id,'reviews':percent}
+        comment.append(review.get_comment())
+    percent = [int(n/number) for n in percent]
+    params = {'labid': lab_id,'review1':percent[0],'review2':percent[1],'review3':percent[2],'review4':percent[3],'comment':comment}
     print(percent)
+    print(comment)
     return render(request,"faculty_and_department/detail.html",context = params)
 
 def logno(request):
