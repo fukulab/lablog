@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+from django.db import IntegrityError
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView #テンプレートタグ
 from django.contrib.auth import authenticate, login, logout
@@ -22,6 +23,7 @@ class MyCustomMixin(UserPassesTestMixin):
 
     def handle_no_permission(self):
         return redirect(reverse('logno'))
+    
 #ログイン
 #ログインの返答もこの関数を呼ぶ。
 def Login(request):
@@ -119,7 +121,7 @@ class  AccountRegistration(TemplateView):
     
 
 #研究室の評価
-class  ReviewLabolatory(MyCustomMixin, TemplateView):
+class  ReviewLabolatory(TemplateView):
 
     def __init__(self):
         self.params = {
@@ -142,26 +144,27 @@ class  ReviewLabolatory(MyCustomMixin, TemplateView):
         self.params["lab_form"] = ReviewForm(data= request.POST)
 
         #フォーム入力の有効検証
-        if self.params["lab_form"].is_valid():
-            # アカウント情報をDB保存
-            lab = self.params["lab_form"].save(commit=False)
-            lab.lab_id = labid
-            lab.lab_name = labname
-            lab.user = request.user
-            # # パスワードをハッシュ化
-            # lab.set_password(lab.password)
-            # # ハッシュ化パスワード更新
-            lab.save()
+        try:
+            if self.params["lab_form"].is_valid():
+                # アカウント情報をDB保存
+                lab = self.params["lab_form"].save(commit=False)
+                lab.lab_id = labid
+                lab.lab_name = labname
+                lab.user = request.user
+                # # パスワードをハッシュ化
+                # lab.set_password(lab.password)
+                # # ハッシュ化パスワード更新
+                lab.save()
 
-            # アカウント作成情報更新
-            self.params["LabCreate"] = True
+                # アカウント作成情報更新
+                self.params["LabCreate"] = True
 
-        else:
+        except IntegrityError:
             # フォームが有効でない場合
             print(self.params["lab_form"].errors)
+            return redirect(reverse('logno'))  
 
         return render(request,"App_Folder_HTML/review.html",context=self.params)
-        # return print(self.params)
 
 #ホーム
 def home(request):
